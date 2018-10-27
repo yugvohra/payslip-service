@@ -1,4 +1,4 @@
-package com.payslip.tax.calculation.chain;
+package com.payslip.tax.calculation.chain.calculators;
 
 import com.payslip.tax.calculation.helper.TaxCaluclatorHelper;
 

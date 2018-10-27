@@ -1,5 +1,6 @@
 package com.payslip.tax.calculation.chain;
 
+import com.payslip.tax.calculation.chain.calculators.impl.NilTaxCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class NilTaxCalculatorTest {
 
   @Before
   public void setUp() {
-    taxCalculator = NilTaxCalculator.getInstance();
+    taxCalculator = new NilTaxCalculator(18200d);
   }
 
   @Test

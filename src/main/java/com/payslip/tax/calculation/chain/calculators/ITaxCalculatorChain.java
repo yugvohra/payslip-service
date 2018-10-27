@@ -1,4 +1,4 @@
-package com.payslip.tax.calculation.chain;
+package com.payslip.tax.calculation.chain.calculators;
 
 public interface ITaxCalculatorChain {
   void setNextElementInChain(ITaxCalculatorChain nextElementInChain);

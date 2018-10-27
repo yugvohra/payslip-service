@@ -1,18 +1,13 @@
 package com.payslip.tax.calculation.chain;
 
-import org.junit.Before;
+import com.payslip.tax.calculation.chain.calculators.impl.IncomeSlabTaxCalculator;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Upto37kTaxCalculatorTest {
+public class IncomeSlabTaxCalculatorTest {
 
-  private Upto37kTaxCalculator taxCalculator;
-
-  @Before
-  public void setUp() {
-    taxCalculator = Upto37kTaxCalculator.getInstance();
-  }
+  private final IncomeSlabTaxCalculator taxCalculator = new IncomeSlabTaxCalculator(18201d,37000d,0.19d);
 
   @Test
   public void shouldReturnZeroTaxForAmountBelowLimit() {
