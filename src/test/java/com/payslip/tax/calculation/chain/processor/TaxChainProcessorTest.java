@@ -157,25 +157,4 @@ public class TaxChainProcessorTest {
     //then
     assertThat(calculatedTax).isEqualTo(58732d);
   }
-  @Test
-  public void shouldReturnRoundedOffTax() {
-    //given
-    Double amount = 180090d;
-    //when
-    Long calculatedTax = taxChainProcessor.getGalculatedTaxRoundOffToInteger(amount);
-
-    //then
-    assertThat(calculatedTax).isEqualTo(54273L);
-  }
-
-  @Test
-  public void shouldNotRoundOffForIntegralValues() {
-    //given
-    Double amount = 190000d;
-    //when
-    Long calculatedTax = taxChainProcessor.getGalculatedTaxRoundOffToInteger(amount);
-
-    //then
-    assertThat(calculatedTax).isEqualTo(58732L);
-  }
 }

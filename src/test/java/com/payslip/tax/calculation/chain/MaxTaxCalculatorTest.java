@@ -8,7 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MaxTaxCalculatorTest {
 
-  private AbstractTaxCalculator taxCalculator=new MaxTaxCalculator(180001d,0.45d);
+  private AbstractTaxCalculator taxCalculator = new MaxTaxCalculator(180001d, 0.45d);
+
   @Test
   public void shouldReturnZeroTaxForAmountBelowLimit() {
     //given
@@ -31,8 +32,6 @@ public class MaxTaxCalculatorTest {
     //then
     assertThat(calculatedTax).isEqualTo(0.45d);
   }
-
-
 
 
   @Test

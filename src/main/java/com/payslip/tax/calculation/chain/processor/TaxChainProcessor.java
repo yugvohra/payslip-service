@@ -17,6 +17,7 @@ public class TaxChainProcessor {
     return INSTANCE;
   }
 
+  /**Initialize chain of tax calculators for different slabs */
   private void initialize() {
     ITaxCalculatorChain nillTaxCalculator = new NilTaxCalculator(18200d);
     ITaxCalculatorChain upto37KTaxCalculator = new IncomeSlabTaxCalculator(18201d, 37000d, 0.19d);
@@ -41,14 +42,4 @@ public class TaxChainProcessor {
     return chain.calculateTax(amount);
   }
 
-  /**
-   * TODO
-   * should be moved to decorator
-   *
-   * @param amount on which tax needs to be computed
-   * @return rounded off tax
-   */
-  Long getGalculatedTaxRoundOffToInteger(Double amount) {
-    return Math.round(chain.calculateTax(amount));
-  }
 }

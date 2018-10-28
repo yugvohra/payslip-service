@@ -6,8 +6,9 @@ import com.payslip.domain.Employee;
 import com.payslip.domain.EmployeePay;
 import com.payslip.domain.PaySlip;
 import com.payslip.io.csv.CsvIOExecutor;
-import com.payslip.io.csv.EmployeeCSVBean;
-import com.payslip.io.csv.PaySlipCsvBean;
+import com.payslip.io.csv.InputValidator;
+import com.payslip.io.csv.beans.EmployeeCSVBean;
+import com.payslip.io.csv.beans.PaySlipCsvBean;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,19 +20,24 @@ import java.util.stream.Collectors;
  */
 public class CSVService {
   private final CsvIOExecutor csvIOExecutor;
+  private static CSVService INSTANCE = new CSVService();
 
-  public CSVService() {
-    this.csvIOExecutor = new CsvIOExecutor();
+  private CSVService() {
+    this.csvIOExecutor = CsvIOExecutor.getInstance();
+  }
+
+  public static CSVService getInstance() {
+    return INSTANCE;
   }
 
   public List<Employee> fetchEmployeeFrom(String filePath) throws IOException {
-    return (List<Employee>) csvIOExecutor.fetchEmployeeBeans(filePath, EmployeeCSVBean.class).stream().map(bean -> from((EmployeeCSVBean) bean)).collect(Collectors.toList());
+    return (List<Employee>) csvIOExecutor.fetchEmployeeBeans(filePath, EmployeeCSVBean.class).stream().filter(csvBean-> InputValidator.isValid((EmployeeCSVBean) csvBean)).map(bean -> from((EmployeeCSVBean) bean)).collect(Collectors.toList());
 
   }
 
   public void writePaySlipsToCsv(List<PaySlip> payslips) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
-    List csvBeans=payslips.parallelStream().map(this::from).collect(Collectors.toList());
-    csvIOExecutor.writeBeanToCsv(PaySlipCsvBean.class,csvBeans);
+    List csvBeans = payslips.parallelStream().map(this::from).collect(Collectors.toList());
+    csvIOExecutor.writeBeanToCsv(PaySlipCsvBean.class, csvBeans);
   }
 
   private Employee from(EmployeeCSVBean aCsvBean) {
@@ -40,6 +46,6 @@ public class CSVService {
 
   private PaySlipCsvBean from(PaySlip aPayslip) {
     return new PaySlipCsvBean.Builder().withFirstName(aPayslip.getFirstName()).withLastName(aPayslip.getLastName()).withgrossIncome(aPayslip.getGrossIncome()).
-        withIncomeTax(aPayslip.getIncomeTax()).withNetIncome(aPayslip.getNetIncome()).withPaymentDate(aPayslip.getMonthDate()).withSuperAmount(aPayslip.getSuperAmount()).build();
+        withIncomeTax(aPayslip.getIncomeTax()).withNetIncome(aPayslip.getNetIncome()).withPaymentDate(aPayslip.getPaymentDate()).withSuperAmount(aPayslip.getSuperAmount()).build();
   }
 }

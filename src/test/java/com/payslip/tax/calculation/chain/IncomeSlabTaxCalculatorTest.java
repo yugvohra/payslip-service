@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class IncomeSlabTaxCalculatorTest {
 
-  private final IncomeSlabTaxCalculator taxCalculator = new IncomeSlabTaxCalculator(18201d,37000d,0.19d);
+  private final IncomeSlabTaxCalculator taxCalculator = new IncomeSlabTaxCalculator(18201d, 37000d, 0.19d);
 
   @Test
   public void shouldReturnZeroTaxForAmountBelowLimit() {

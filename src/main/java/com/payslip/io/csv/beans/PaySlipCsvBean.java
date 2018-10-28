@@ -1,4 +1,4 @@
-package com.payslip.io.csv;
+package com.payslip.io.csv.beans;
 
 import com.opencsv.bean.CsvBindByName;
 
@@ -7,22 +7,22 @@ public class PaySlipCsvBean {
   private String firstName;
   @CsvBindByName(column = "last name")
   private String lastName;
-  @CsvBindByName(column = "payment date")
-  private String paymentDate;
   @CsvBindByName(column = "gross income")
-  private Long grossincome;
+  private Long grossIncome;
   @CsvBindByName(column = "income tax")
   private Long incomeTax;
   @CsvBindByName(column = "net income")
   private Long netIncome;
   @CsvBindByName(column = "super")
   private Long superAmount;
+  @CsvBindByName(column = "payment date")
+  private String paymentDate;
 
-  public PaySlipCsvBean(String firstName, String lastName, String paymentDate, Long grossincome, Long incomeTax, Long netIncome, Long superAmount) {
+  public PaySlipCsvBean(String firstName, String lastName, String paymentDate, Long grossIncome, Long incomeTax, Long netIncome, Long superAmount) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.paymentDate = paymentDate;
-    this.grossincome = grossincome;
+    this.grossIncome = grossIncome;
     this.incomeTax = incomeTax;
     this.netIncome = netIncome;
     this.superAmount = superAmount;
@@ -40,8 +40,8 @@ public class PaySlipCsvBean {
     return paymentDate;
   }
 
-  public Long getGrossincome() {
-    return grossincome;
+  public Long getGrossIncome() {
+    return grossIncome;
   }
 
   public Long getIncomeTax() {

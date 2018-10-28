@@ -1,4 +1,4 @@
-package com.payslip.io.csv;
+package com.payslip.io.csv.beans;
 
 import com.opencsv.bean.CsvBindByName;
 
@@ -14,9 +14,6 @@ public class EmployeeCSVBean {
   @CsvBindByName(column = "payment date")
   private String paymentDate;
 
-  /**
-   * needed for opencsv reader
-   */
   public EmployeeCSVBean() {
 
   }

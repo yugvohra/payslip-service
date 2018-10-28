@@ -1,38 +1,60 @@
 package com.payslip.domain;
 
-public final class PaySlip {
-  private final String firstName;
-  private final String lastName;
-  private final String monthDate;
-  private final Long grossIncome;
-  private final Long incomeTax;
-  private final Long netIncome;
-  private final Long superAmount;
+import com.payslip.visitor.IVisitor;
 
-  private PaySlip(String firstName, String lastName, String monthDate, Long grossIncome, Long incomeTax, Long netIncome, Long superAmount) {
+public final class PaySlip {
+  private String firstName;
+  private String lastName;
+  private String paymentDate;
+  private Long grossIncome;
+  private Long incomeTax;
+  private Long netIncome;
+  private Long superAmount;
+
+  private PaySlip(String firstName, String lastName, String paymentDate, Long grossIncome, Long incomeTax, Long netIncome, Long superAmount) {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.monthDate = monthDate;
+    this.paymentDate = paymentDate;
     this.grossIncome = grossIncome;
     this.incomeTax = incomeTax;
     this.netIncome = netIncome;
     this.superAmount = superAmount;
   }
 
+  public void accept(IVisitor<PaySlip> visitor) {
+    visitor.visit(this);
+  }
+
   public Long getGrossIncome() {
     return grossIncome;
+  }
+
+  public void setGrossIncome(Long grossIncome) {
+    this.grossIncome = grossIncome;
   }
 
   public Long getIncomeTax() {
     return incomeTax;
   }
 
+  public void setIncomeTax(Long incomeTax) {
+    this.incomeTax = incomeTax;
+  }
+
   public Long getNetIncome() {
     return netIncome;
   }
 
+  public void setNetIncome(Long netIncome) {
+    this.netIncome = netIncome;
+  }
+
   public Long getSuperAmount() {
     return superAmount;
+  }
+
+  public void setSuperAmount(Long superAmount) {
+    this.superAmount = superAmount;
   }
 
   public String getFirstName() {
@@ -43,8 +65,12 @@ public final class PaySlip {
     return lastName;
   }
 
-  public String getMonthDate() {
-    return monthDate;
+  public String getPaymentDate() {
+    return paymentDate;
+  }
+
+  public void setPaymentDate(String paymentDate) {
+    this.paymentDate = paymentDate;
   }
 
   public static class PaySlipBuilder {

@@ -6,20 +6,19 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TaxServiceTest {
-  TaxService taxService;
+  private TaxService taxService;
 
   @Before
   public void setUp() {
-    taxService = new TaxService();
+    taxService = TaxService.getInstance();
   }
 
   @Test
-  public void shouldCalculateTaxOnAnIncome()
-  {
+  public void shouldCalculateTaxOnAnIncome() {
     //given
-    Double salary=180000d;
+    Double salary = 180000d;
     //when
-    Long calculatedTax=taxService.getRoundedOffTaxForMonth(salary);
+    Long calculatedTax = taxService.getRoundedOffTaxForMonth(salary);
     //then
     assertThat(calculatedTax).isEqualTo(4519L);
   }

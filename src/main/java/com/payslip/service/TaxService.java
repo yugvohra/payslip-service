@@ -7,10 +7,15 @@ import static java.lang.Math.round;
 /*candidate for Dependency Injections */
 public class TaxService {
 
+  private static TaxService INSTANCE =new TaxService();
   private final TaxChainProcessor taxChainProcessor;
 
-  public TaxService() {
+  private TaxService() {
     taxChainProcessor = TaxChainProcessor.getInstance();
+  }
+
+  public static TaxService getInstance() {
+    return INSTANCE;
   }
 
   public Long getRoundedOffTaxForMonth(Double aTaxableIncome) {

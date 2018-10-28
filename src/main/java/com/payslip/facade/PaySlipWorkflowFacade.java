@@ -25,9 +25,9 @@ public class PaySlipWorkflowFacade {
   }
 
   private void initialize() {
-    this.paySlipService = new PaySlipService();
-    this.taxService = new TaxService();
-    this.csvService = new CSVService();
+    this.paySlipService = PaySlipService.getInstance();
+    this.taxService = TaxService.getInstance();
+    this.csvService = CSVService.getInstance();
   }
 
   public void execute(String inputFilePath) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
@@ -46,7 +46,7 @@ public class PaySlipWorkflowFacade {
     csvService.writePaySlipsToCsv(paySlips);
   }
 
-  PaySlip generatePayslip(Employee employee) {
+  private PaySlip generatePayslip(Employee employee) {
     Long computedTax = taxService.getRoundedOffTaxForMonth(employee.getEmployeePay().getAnnualSalary());
     return paySlipService.generatePayslip(employee, computedTax);
   }
