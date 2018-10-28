@@ -12,8 +12,7 @@ public class NilTaxCalculator extends AbstractTaxCalculator {
 
   @Override
   public double getTaxableAmount(double amount) {
-    double taxableAmount = amount >= upperLimit ? upperLimit : amount;
-    return taxableAmount;
+    return amount >= upperLimit ? upperLimit : amount;
   }
 
   @Override

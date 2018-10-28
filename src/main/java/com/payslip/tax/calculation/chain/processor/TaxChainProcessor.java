@@ -48,7 +48,7 @@ public class TaxChainProcessor {
    * @param amount on which tax needs to be computed
    * @return rounded off tax
    */
-  public Long getGalculatedTaxRoundOffToInteger(Double amount) {
+  Long getGalculatedTaxRoundOffToInteger(Double amount) {
     return Math.round(chain.calculateTax(amount));
   }
 }

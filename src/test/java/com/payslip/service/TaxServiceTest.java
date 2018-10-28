@@ -19,8 +19,8 @@ public class TaxServiceTest {
     //given
     Double salary=180000d;
     //when
-    Long calculatedTax=taxService.getRoundedOffTax(salary);
+    Long calculatedTax=taxService.getRoundedOffTaxForMonth(salary);
     //then
-    assertThat(calculatedTax).isEqualTo(54232L);
+    assertThat(calculatedTax).isEqualTo(4519L);
   }
 }
